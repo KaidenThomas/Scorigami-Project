@@ -1,0 +1,41 @@
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.aps
+*.bsc
+*.ilk
+*.obj
+*.pch
+*.pdb
+*.pgm
+*.tlb
+*.tlh
+*.tmp
+*.log
+*.vspscc
+*.vssscc
+*.buildlog
+*.pidb
+*.log
+*.sbr
+*.metaproj
+*.opendb # This specifically targets the file causing your error
+
+# Build directories
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+bin/
+obj/
+
+# Package files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# Other common OS files
+.DS_Store
+Thumbs.db
