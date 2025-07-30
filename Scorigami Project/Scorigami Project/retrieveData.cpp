@@ -8,7 +8,7 @@
 
 // Struct to hold a score combination, its frequency, and total score for sorting.
 // This is a local definition, similar to the one in fetchMatrix.cpp,
-// to handle the sorting of score combinations for the top 3 display.
+// to handle the sorting of score combinations for the top 5 display.
 struct ScoreCombination {
     int homeScore;
     int awayScore;
@@ -23,17 +23,17 @@ struct ScoreCombination {
         }
         return totalScore < other.totalScore; // Then by total score (ascending) for tie-breaking
     }
-}; // Missing semicolon was a common cause for '{' errors in structs
+}; // IMPORTANT: Ensure this semicolon is present to properly close the struct definition.
 
 // Function definition for retrieveData
 void retrieveData(const std::vector<std::vector<int>>& scoreMatrix, const ActiveGame& currentGameState, int numSimulations) {
     // Open the output file. std::ios::trunc ensures the file is
     // truncated (emptied) if it exists, or created if it doesn't.
-    std::ofstream outputFile("currentData.txt", std::ios::trunc);
+    std::ofstream outputFile("currentScorigamiData.txt", std::ios::trunc);
 
     // Check if the file was opened successfully
     if (!outputFile.is_open()) {
-        std::cerr << "Error: Could not open currentData.txt for writing." << std::endl;
+        std::cerr << "Error: Could not open currentScorigamiData.txt for writing." << std::endl;
         return; // Exit the function if file cannot be opened
     }
 
@@ -87,8 +87,7 @@ void retrieveData(const std::vector<std::vector<int>>& scoreMatrix, const Active
     int awayScore = currentGameState.getAwayScore();
     std::string possessionTeamName = currentGameState.getPossessionTeamName(); // Get possession team name
 
-    // --- 2. Calculate Top 3 Most Likely Final Score Combinations ---
-    // This logic is adapted from fetchMatrix.cpp
+    // --- 2. Calculate Top 5 Most Likely Final Score Combinations ---
     const int MAX_SCORE = 200; // Assuming the same MAX_SCORE as in fetchMatrix.cpp
     std::map<std::pair<int, int>, int> scoreCounts;
 
@@ -110,20 +109,19 @@ void retrieveData(const std::vector<std::vector<int>>& scoreMatrix, const Active
     // Sort the vector to get the most common scores
     std::sort(commonScores.begin(), commonScores.end());
 
-    // --- 3. Write Information to currentData.txt ---
-    outputFile << "CurrentTime: " << currentTimeStr << std::endl;
-    outputFile << "CurrentQuarter: " << currentQuarter << std::endl;
-    outputFile << "HomeTeam: " << homeTeamName << std::endl;
-    outputFile << "AwayTeam: " << awayTeamName << std::endl;
-    outputFile << "HomeScore: " << homeScore << std::endl;
-    outputFile << "AwayScore: " << awayScore << std::endl;
-    outputFile << "PossessionTeam: " << possessionTeamName << std::endl; // Added possession team
+    // --- 3. Write Information to currentData.txt (without headings/captions) ---
+    outputFile << currentTimeStr << std::endl;
+    outputFile << currentQuarter << std::endl;
+    outputFile << homeTeamName << std::endl;
+    outputFile << awayTeamName << std::endl;
+    outputFile << homeScore << std::endl;
+    outputFile << awayScore << std::endl;
+    outputFile << possessionTeamName << std::endl;
 
-    outputFile << "--- Top 3 Most Likely Final Score Combinations ---" << std::endl;
-    for (int i = 0; i < std::min((int)commonScores.size(), 3); ++i) {
+    // Loop for top 5 scores
+    for (int i = 0; i < std::min((int)commonScores.size(), 5); ++i) { // Changed 3 to 5
         double percentage = (static_cast<double>(commonScores[i].count) / numSimulations) * 100.0;
-        outputFile << "TopScore" << (i + 1) << ": "
-            << commonScores[i].homeScore << "-"
+        outputFile << commonScores[i].homeScore << "-"
             << commonScores[i].awayScore << " (Chance: ";
 
         // Implement the edge case for displaying 0.0% as <0.1%
@@ -131,16 +129,16 @@ void retrieveData(const std::vector<std::vector<int>>& scoreMatrix, const Active
             outputFile << "<0.1%";
         }
         else {
-            outputFile << std::fixed << std::setprecision(1) << percentage << "%)";
+            outputFile << std::fixed << std::setprecision(2) << percentage << "%)";
         }
         outputFile << std::endl;
     }
 
     // Placeholder for Scorigami percentage (to be implemented later)
-    outputFile << "ScorigamiChance: N/A" << std::endl;
+    outputFile << "N/A" << std::endl;
 
     // Close the file
     outputFile.close();
 
-    std::cout << "Data successfully written to currentData.txt" << std::endl;
+    std::cout << "Data successfully written to currentScorigamiData.txt" << std::endl;
 }

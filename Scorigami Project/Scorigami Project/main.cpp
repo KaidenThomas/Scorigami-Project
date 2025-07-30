@@ -58,13 +58,13 @@ int main() {
     std::cout << "--- Initializing Game State for National Championship Simulation ---" << std::endl;
 
     // Game starts Q4 7:30
-    std::string currentTimeStr = "0:56";
-    int currentQuarter = 4; // Fourth quarter
+    std::string currentTimeStr = "15:00";
+    int currentQuarter = 1; // Fourth quarter
     HalfTimeInfo initialHalfTimeInfo = getHalfTimeDetails(currentTimeStr, currentQuarter);
 
     // Initial scores: OSU 31, ND 15
-    int initialHomeScore = 31; // Ohio State's score
-    int initialAwayScore = 15; // Notre Dame's score
+    int initialHomeScore = 0; // Ohio State's score
+    int initialAwayScore = 0; // Notre Dame's score
 
     // Assuming Ohio State (home team) and Notre Dame (away team).
     // For a 4th quarter start, assume the team that is currently trailing gets possession,
@@ -74,7 +74,7 @@ int main() {
     std::string initialPossessionTeamName = notreDame.getTeamName();
 
     // Create the ActiveGame instance
-    ActiveGame currentGameState(ohioState, notreDame, homeTeamReceivedKickoff,
+    ActiveGame currentGameState(notreDame, ohioState, homeTeamReceivedKickoff,
         initialHomeScore, initialAwayScore,
         initialPossessionTeamName,
         initialHalfTimeInfo);
