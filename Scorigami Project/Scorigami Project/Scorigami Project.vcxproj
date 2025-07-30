@@ -130,6 +130,7 @@
     <ClInclude Include="ActiveGame.h" />
     <ClInclude Include="fetchMatrix.h" />
     <ClInclude Include="HalfTimeInfo.h" />
+    <ClInclude Include="retrieveData.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="simulateDrive.h" />
     <ClInclude Include="simulateGame.h" />
@@ -140,6 +141,7 @@
     <ClCompile Include="fetchMatrix.cpp" />
     <ClCompile Include="HalfTimeInfo.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="retrieveData.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="simulateDrive.cpp" />
     <ClCompile Include="simulateGame.cpp" />

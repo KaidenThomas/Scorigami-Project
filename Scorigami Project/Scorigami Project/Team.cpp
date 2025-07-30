@@ -83,5 +83,3 @@ void Team::displayTeamStats() const {
     std::cout << "---------------------------------------" << std::endl;
 }
 
-// Making a change here
-//Making another change here

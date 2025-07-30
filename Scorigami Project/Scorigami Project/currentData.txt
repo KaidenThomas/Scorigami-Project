@@ -1,0 +1,12 @@
+CurrentTime: 07:30
+CurrentQuarter: 4
+HomeTeam: Ohio State
+AwayTeam: Notre Dame
+HomeScore: 31
+AwayScore: 15
+PossessionTeam: Notre Dame
+--- Top 3 Most Likely Final Score Combinations ---
+TopScore1: 38-15 (Chance: 20.50%)
+TopScore2: 31-15 (Chance: 12.60%)
+TopScore3: 38-22 (Chance: 12.60%)
+ScorigamiChance: N/A
