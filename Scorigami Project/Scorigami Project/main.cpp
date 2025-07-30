@@ -58,7 +58,7 @@ int main() {
     std::cout << "--- Initializing Game State for National Championship Simulation ---" << std::endl;
 
     // Game starts Q4 7:30
-    std::string currentTimeStr = "07:30";
+    std::string currentTimeStr = "0:56";
     int currentQuarter = 4; // Fourth quarter
     HalfTimeInfo initialHalfTimeInfo = getHalfTimeDetails(currentTimeStr, currentQuarter);
 

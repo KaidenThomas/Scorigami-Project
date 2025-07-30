@@ -124,8 +124,16 @@ void retrieveData(const std::vector<std::vector<int>>& scoreMatrix, const Active
         double percentage = (static_cast<double>(commonScores[i].count) / numSimulations) * 100.0;
         outputFile << "TopScore" << (i + 1) << ": "
             << commonScores[i].homeScore << "-"
-            << commonScores[i].awayScore << " (Chance: "
-            << std::fixed << std::setprecision(2) << percentage << "%)" << std::endl;
+            << commonScores[i].awayScore << " (Chance: ";
+
+        // Implement the edge case for displaying 0.0% as <0.1%
+        if (percentage == 0.0) {
+            outputFile << "<0.1%";
+        }
+        else {
+            outputFile << std::fixed << std::setprecision(1) << percentage << "%)";
+        }
+        outputFile << std::endl;
     }
 
     // Placeholder for Scorigami percentage (to be implemented later)
