@@ -27,6 +27,9 @@ std::pair<Team, Team> getTeamStats(const std::string& filepath) {
         // Add turnover score percentage to turnover percentage
         pctTO += pctTOScore;
 
+        // Set end of half probability to zero (handled internally)
+        pctEOH = 0.0;
+
         // Normalize all drive outcome probabilities so they sum to 1
         std::vector<double> outcomes = {
             pctTO, pctOS, pctFG, pctP,
