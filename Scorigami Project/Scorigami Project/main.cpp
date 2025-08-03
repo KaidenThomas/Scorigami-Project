@@ -10,10 +10,11 @@
 #include "fetchmatrix.h"
 #include "retrieveData.h"
 #include "getTeamStats.h" // Include the new header
+#include "getScorigamiHistory.h"
 
 int main() {
     // --- 1. Read team statistics from file ---
-    std::string statsFilePath = "stats_output.txt";
+    std::string statsFilePath = "Nebraska.txt";
     std::pair<Team, Team> teams = getTeamStats(statsFilePath);
     Team& awayTeam = teams.first;
     Team& homeTeam = teams.second;
@@ -50,4 +51,5 @@ int main() {
     retrieveData(resultMatrix, currentGameState, NUM_SIMULATIONS);
 
     return 0;
+
 }

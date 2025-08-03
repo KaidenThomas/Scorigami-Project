@@ -5,6 +5,7 @@
 #include <iomanip>    // Required for std::setw, std::setfill, std::fixed, std::setprecision for time and percentage formatting
 #include <algorithm>  // Required for std::min, std::sort
 #include <sstream>    // Required for std::stringstream to format time string
+#include "getScorigamiHistory.h"
 
 // Struct to hold a score combination, its frequency, and total score for sorting.
 // This is a local definition, similar to the one in fetchMatrix.cpp,
@@ -27,14 +28,11 @@ struct ScoreCombination {
 
 // Function definition for retrieveData
 void retrieveData(const std::vector<std::vector<int>>& scoreMatrix, const ActiveGame& currentGameState, int numSimulations) {
-    // Open the output file. std::ios::trunc ensures the file is
-    // truncated (emptied) if it exists, or created if it doesn't.
     std::ofstream outputFile("currentScorigamiData.txt", std::ios::trunc);
 
-    // Check if the file was opened successfully
     if (!outputFile.is_open()) {
         std::cerr << "Error: Could not open currentScorigamiData.txt for writing." << std::endl;
-        return; // Exit the function if file cannot be opened
+        return;
     }
 
     // --- 1. Extract Current Game State Information ---
@@ -134,8 +132,37 @@ void retrieveData(const std::vector<std::vector<int>>& scoreMatrix, const Active
         outputFile << std::endl;
     }
 
-    // Placeholder for Scorigami percentage (to be implemented later)
-    outputFile << "N/A" << std::endl;
+    // --- Scorigami Calculation ---
+// Load historical scorigami matrix
+    std::vector<std::vector<bool>> scorigamiMatrix = getScorigamiHistory("scorigami_info.txt");
+
+    int newOutcomeCount = 0;
+    for (int home = 0; home < 200; ++home) {
+        for (int away = 0; away < 200; ++away) {
+            int count = scoreMatrix[home][away];
+            if (count > 0 && home != away) {
+                int winner = (home > away) ? home : away;
+                int loser = (home > away) ? away : home;
+                // If this outcome has never happened before, add all occurrences
+                if (!scorigamiMatrix[loser][winner]) {
+                    newOutcomeCount += count;
+                }
+            }
+        }
+    }
+
+    double scorigamiPercent = (static_cast<double>(newOutcomeCount) / numSimulations) * 100.0;
+
+    // --- Write scorigami percentage to file ---
+    if (scorigamiPercent < 0.05) {
+        outputFile << "<0.1%" << std::endl;
+    }
+    else {
+        outputFile << std::fixed << std::setprecision(1) << scorigamiPercent << "%" << std::endl;
+    }
+
+    outputFile.close();
+    std::cout << "Data successfully written to currentScorigamiData.txt" << std::endl;
 
     // Close the file
     outputFile.close();

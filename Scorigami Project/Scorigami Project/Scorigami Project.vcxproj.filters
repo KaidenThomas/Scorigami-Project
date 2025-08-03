@@ -42,6 +42,9 @@
     <ClInclude Include="getTeamStats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="getScorigamiHistory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActiveGame.cpp">
@@ -72,6 +75,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getTeamStats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getScorigamiHistory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

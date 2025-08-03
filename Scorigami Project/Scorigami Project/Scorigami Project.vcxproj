@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="ActiveGame.h" />
     <ClInclude Include="fetchMatrix.h" />
+    <ClInclude Include="getScorigamiHistory.h" />
     <ClInclude Include="getTeamStats.h" />
     <ClInclude Include="HalfTimeInfo.h" />
     <ClInclude Include="retrieveData.h" />
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="ActiveGame.cpp" />
     <ClCompile Include="fetchMatrix.cpp" />
+    <ClCompile Include="getScorigamiHistory.cpp" />
     <ClCompile Include="getTeamStats.cpp" />
     <ClCompile Include="HalfTimeInfo.cpp" />
     <ClCompile Include="main.cpp" />
