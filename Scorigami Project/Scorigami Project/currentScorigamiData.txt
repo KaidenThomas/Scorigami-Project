@@ -5,9 +5,9 @@ Ohio State
 0
 0
 Notre Dame
-35-59 (Chance: 0.60%)
-27-45 (Chance: 0.50%)
-27-50 (Chance: 0.50%)
-39-55 (Chance: 0.50%)
-35-45 (Chance: 0.40%)
+27-54 (Chance: 0.50%)
+28-63 (Chance: 0.50%)
+31-38 (Chance: 0.40%)
+30-46 (Chance: 0.40%)
+38-41 (Chance: 0.40%)
 N/A
